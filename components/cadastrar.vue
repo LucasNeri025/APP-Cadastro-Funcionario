@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="textFuncionario">
-                   <label>Sobre o Funcionario :<textarea></textarea></label> 
+                   <label>Sobre o Funcionario :<textarea v-model="info"></textarea></label> 
                 </div>
             </div>
         </div>
@@ -54,7 +54,8 @@ export default {
             nis:'',
             endereco:'',
             cidade:'', 
-            salario:''
+            salario:'',
+            info:'',
         }
     },methods:{
         cancelar(){
@@ -75,7 +76,8 @@ export default {
             dataInicioFunc:this.data,
             nisFunc:this.nis,
             endereçoFunc:this.endereco.toUpperCase(),
-            cidadeFunc:this.cidade.toUpperCase()
+            cidadeFunc:this.cidade.toUpperCase(),
+            textInfoFunc:this.info.toUpperCase()
         }
         axios.post('https://api-teste-lucas.onrender.com/fun', bodi,{
             headers:{
@@ -85,9 +87,7 @@ export default {
                 this.$router.push({ name: 'fun', params: { id: res.data.funcionario._id }})
             }
         })
-        .catch(function (error) {
-            console.error(error);
-        });
+        .catch((e)=> console.log(e));
         }
     },
     

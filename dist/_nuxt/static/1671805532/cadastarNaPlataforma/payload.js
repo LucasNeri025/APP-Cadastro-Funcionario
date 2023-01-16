@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/cadastarNaPlataforma", {data:[{}],fetch:{},mutations:[]});

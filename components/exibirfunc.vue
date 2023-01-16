@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="textFuncionario">
-                    <textarea disabled id=""></textarea>
+                    <textarea disabled v-model="TrabFun.textInfoFunc"></textarea>
                 </div>
             </div>
             <ModalDelete @fecharModal="activeModal" v-show="modal"/>
@@ -59,7 +59,6 @@ export default {
     methods:{
         modificar(){
             this.$router.push({ name: 'editar', params: { id: this.TrabFun._id }})
-            
         },
         activeModal(){
             this.modal == false ? this.modal=true : this.modal=false

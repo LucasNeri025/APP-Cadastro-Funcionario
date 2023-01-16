@@ -7,14 +7,15 @@
 
         <div class="conteinerLogin">
             <form method="POST">
+                <label>NOME</label>
+                <input v-model="text3" type="text"/>
                 <label>EMAIL</label>
                 <input v-model="text" type="text"/>
                 <label>SENHA</label>
                 <input v-model="text2" type="password"/>
-                <button @click.prevent="verifyLogin" type="submit">ENTRAR</button>
+                <button @click.prevent="verifyLogin" type="submit">CADASTRAR</button>
             </form>
-            <nuxt-link to="/cadastarNaPlataforma" > NÃO TEM CADASTRO ? CLIQUE AQUI</nuxt-link> 
-            <a v-show="incorrect" class="error" href="">SENHA OU EMAIL INCORRETO</a>
+            <a v-show="incorrect" class="error" href="">EMAIL E SENHA PRECISA CONTER MAIS DE 06 CARACTERES</a>
         </div>
         
     </div>
@@ -23,16 +24,18 @@
 <script>
 import Cookies from 'js-cookie'
 export default {
-    name:'login',
+    name:'cadastrarNaPlat',
     data(){
         return{
             text:"",
             text2:'',
+            text3:'',
             incorrect:false,
         }
     },
    methods:{
         verifyLogin(){
+            this.incorrect = false;
             if(this.text == '' || this.text.length < 6 ){ 
                 this.incorrect = true 
                 return
@@ -41,10 +44,15 @@ export default {
                 this.incorrect = true 
                 return
             }
+            if(this.text3 == '' || this.text3.length < 3 ){ 
+                this.incorrect = true 
+                return
+            }
             this.login()
         },
        login(){
-            this.$axios.$post('https://api-teste-lucas.onrender.com/auth/authenticate',{
+            this.$axios.$post('https://api-teste-lucas.onrender.com/auth/register',{
+                name:this.text3,
                 email:this.text,
 	            password:this.text2,
             })
@@ -105,7 +113,7 @@ export default {
     text-align: left;
 }
 .conteinerLogin form input{
-    height: 70px;
+    height: 60px;
     width: 320px;
     border-radius: 20px;
     border: none;
@@ -130,10 +138,11 @@ export default {
 
 .conteinerLogin a {
     font-family: 'Poppins', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     color:white;
     text-decoration: none;
-    margin-top: 60px;
+    margin-top: 20px;
+    text-align: center;
 }
 .error{
     color:red !important;

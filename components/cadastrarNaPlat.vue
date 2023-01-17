@@ -8,11 +8,11 @@
         <div class="conteinerLogin">
             <form method="POST">
                 <label>NOME</label>
-                <input v-model="text3" type="text"/>
+                <input required v-model="text3" type="text"/>
                 <label>EMAIL</label>
-                <input v-model="text" type="text"/>
+                <input required v-model="text" type="text"/>
                 <label>SENHA</label>
-                <input v-model="text2" type="password"/>
+                <input required v-model="text2" type="password"/>
                 <button @click.prevent="verifyLogin" type="submit">CADASTRAR</button>
             </form>
             <a v-show="incorrect" class="error" href="">EMAIL E SENHA PRECISA CONTER MAIS DE 06 CARACTERES</a>
@@ -60,7 +60,7 @@ export default {
             .catch(e => this.incorrect = true)
         },
         setCookie(param){   
-            Cookies.set('tkn', param,  { expires: 1, path: '' })
+            Cookies.set('tkn', param,{ expires: 1, path: '' })
             this.$router.push('home')
         }
     }

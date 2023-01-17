@@ -1,6 +1,5 @@
 export default {
 
-  target:'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'projeto-cadastro',
@@ -10,7 +9,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Projeto de cadastro de funcionario, para portfólio.' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [

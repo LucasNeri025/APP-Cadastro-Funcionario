@@ -1,7 +1,6 @@
 <template>
     <div class="conteiner">
         <ul>
-            
             <li><nuxt-link class="clique" to="/home">LISTA DE FUNCIONARIOS</nuxt-link></li>
             <LI>LOGO</LI>
             <li><nuxt-link class="clique" to="/cadastro">CADASTRAR FUNCIONARIOS</nuxt-link></li>
@@ -24,13 +23,12 @@ export default {
     border-radius: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 .conteiner ul {
     display: flex;
     justify-content: space-around;
     list-style: none;
-    width: 97%;
+    width: 100%;
 }
 .conteiner ul li {
     color: white;
@@ -51,7 +49,8 @@ export default {
         display: flex;
         flex-wrap: wrap;
         text-align: center;
-        margin: 0 20px 0px 20px;
+        font-size: 15px;
+        
     }
 }
 </style>

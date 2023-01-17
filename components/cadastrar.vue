@@ -2,31 +2,29 @@
     <div class="conteinerFunc">
             <div class="divisao one">
                 <div class="principal">
-                    <label>NOME :<input type="text" v-model="nome"></label>
-                    <label>CPF :<input type="number" v-model="cpf"></label>
-                    <label>RG :<input type="number" v-model="rg"></label>
+                    <label>NOME :<input type="text" required v-model="nome"></label>
+                    <label>CPF :<input type="number" required v-model="cpf"></label>
+                    <label>RG :<input type="number" required v-model="rg"></label>
                 </div>
-                
             </div>
             <div class="divisao two">
-                <button @click="cadastrarFunc()" class="green">CADASTRAR</button>
+                <button type="submit" @click="verificar()" class="green">CADASTRAR</button>
                 <button @click="cancelar()" class="red">CANCELAR</button>
             </div>
-
             <div class="terceira">
                 <div class="title">
                         <h3>DISCRIÇÃO</h3>
                 </div> 
                 <div class="descricao">
                     <div class="oneDiv">
-                        <label>CARGO :<input type="text" v-model="cargo"></label>
-                        <label>DATA DE INICIO :<input type="date" v-model="data"></label>
-                        <label>NIS :<input type="number" v-model="nis"></label>
+                        <label>CARGO :<input required type="text" v-model="cargo"></label>
+                        <label>DATA DE INICIO :<input required type="date" v-model="data"></label>
+                        <label>NIS :<input required type="number" v-model="nis"></label>
                     </div>
                     <div class="oneDiv">
-                        <label>ENDEREÇO :<input type="text" v-model="endereco"></label>
-                        <label>CIDADE :<input type="text" v-model="cidade"></label>
-                        <label>SALARIO :<input type="number" v-model="salario"></label>
+                        <label>ENDEREÇO :<input required type="text" v-model="endereco"></label>
+                        <label>CIDADE :<input required type="text" v-model="cidade"></label>
+                        <label>SALARIO :<input required type="number" v-model="salario"></label>
                     </div>
                 </div>
                 <div class="textFuncionario">
@@ -35,8 +33,6 @@
             </div>
         </div>
 </template>
-
-
 <script>
 import Cookies from 'js-cookie'
 import axios from 'axios';
@@ -66,20 +62,25 @@ export default {
             cookie = Cookies.get(name)
             return cookie;
         },
-        cadastrarFunc(){
-            let bodi = {
-            nameFunc:this.nome.toLocaleUpperCase(),
-            salarioFunc:this.salario,
-            cpfFunc:this.cpf,
-            rgFunc:this.rg,
-            cargoFunc:this.cargo.toUpperCase(),
-            dataInicioFunc:this.data,
-            nisFunc:this.nis,
-            endereçoFunc:this.endereco.toUpperCase(),
-            cidadeFunc:this.cidade.toUpperCase(),
-            textInfoFunc:this.info.toUpperCase()
-        }
-        axios.post('https://api-teste-lucas.onrender.com/fun', bodi,{
+        verificar(){
+            if(!this.nome == '' & !this.cpf == '' & !this.rg == '' ){
+                let corpoFunc = {
+                    nameFunc:this.nome.toUpperCase(),
+                    salarioFunc:this.salario,
+                    cpfFunc:this.cpf,
+                    rgFunc:this.rg,
+                    cargoFunc:this.cargo.toUpperCase(),
+                    dataInicioFunc:this.data,
+                    nisFunc:this.nis,
+                    endereçoFunc:this.endereco.toUpperCase(),
+                    cidadeFunc:this.cidade.toUpperCase(),
+                    textInfoFunc:this.info.toUpperCase()
+                }
+                return this.cadastrarFunc(corpoFunc) 
+            }
+        },
+        cadastrarFunc(param){
+        axios.post('https://api-teste-lucas.onrender.com/fun',param,{
             headers:{
             Authorization: 'Bearer '+ this.getCookie("tkn")}})
         .then((res)=>{
@@ -90,13 +91,10 @@ export default {
         .catch((e)=> console.log(e));
         }
     },
-    
 }
 </script>
 
-
 <style scoped>
-
 .conteinerFunc{
     margin-top: 25px;
     border-radius: 20px;
@@ -127,6 +125,9 @@ input{
 }
 .principal label{
     padding: 10px 0 10px 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }
 .principal label input{
     width: 200px;

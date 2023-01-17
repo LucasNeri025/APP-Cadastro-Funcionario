@@ -1,41 +1,38 @@
 <template>
     <div class="conteinerFunc">
-            <div class="divisao one">
-                <div class="principal">
-                    <label>NOME :<input type="text" v-model="nome"></label>
-                    <label>CPF :<input type="number" v-model="cpf"></label>
-                    <label>RG :<input type="number" v-model="rg"></label>
+        <div class="divisao one">
+            <div class="principal">
+                <label>NOME :<input type="text" v-model="nome"></label>
+                <label>CPF :<input type="number" v-model="cpf"></label>
+                <label>RG :<input type="number" v-model="rg"></label>
+            </div>   
+        </div>
+        <div class="divisao two">
+            <button @click="cadastrarFunc()" class="green">CADASTRAR</button>
+            <button @click="cancelar()" class="red">CANCELAR</button>
+        </div>
+        <div class="terceira">
+            <div class="title">
+                <h3>DISCRIÇÃO</h3>
+            </div> 
+            <div class="descricao">
+                <div class="oneDiv">
+                    <label>CARGO :<input type="text" v-model="cargo"></label>
+                    <label>DATA DE INICIO :<input type="date" v-model="data"></label>
+                    <label>NIS :<input type="number" v-model="nis"></label>
                 </div>
-                
-            </div>
-            <div class="divisao two">
-                <button @click="cadastrarFunc()" class="green">CADASTRAR</button>
-                <button @click="cancelar()" class="red">CANCELAR</button>
-            </div>
-
-            <div class="terceira">
-                <div class="title">
-                        <h3>DISCRIÇÃO</h3>
-                </div> 
-                <div class="descricao">
-                    <div class="oneDiv">
-                        <label>CARGO :<input type="text" v-model="cargo"></label>
-                        <label>DATA DE INICIO :<input type="date" v-model="data"></label>
-                        <label>NIS :<input type="number" v-model="nis"></label>
-                    </div>
-                    <div class="oneDiv">
-                        <label>ENDEREÇO :<input type="text" v-model="endereco"></label>
-                        <label>CIDADE :<input type="text" v-model="cidade"></label>
-                        <label>SALARIO :<input type="number" v-model="salario"></label>
-                    </div>
-                </div>
-                <div class="textFuncionario">
-                   <label>Sobre o Funcionario :<textarea v-model="info"></textarea></label> 
+                <div class="oneDiv">
+                    <label>ENDEREÇO :<input type="text" v-model="endereco"></label>
+                    <label>CIDADE :<input type="text" v-model="cidade"></label>
+                    <label>SALARIO :<input type="number" v-model="salario"></label>
                 </div>
             </div>
+            <div class="textFuncionario">
+                <label>Sobre o Funcionario :<textarea v-model="info"></textarea></label> 
+            </div>
+        </div>
     </div>
 </template>
-
 
 <script>
 import Cookies from 'js-cookie';

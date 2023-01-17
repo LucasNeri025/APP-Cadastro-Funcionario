@@ -1,30 +1,29 @@
 <template>
     <div class="conteiner"> 
         <div class="tabela">
-                <div class="cabeçalho">
+            <div class="cabeçalho">
+                <ul>
+                    <li>NOME FUNCIONARIOS</li>
+                    <LI>CARGO</LI>
+                    <li class="disable">SALARIO</li>
+                    <li class="disable">CPF</li>
+                    <li class="disable">RG</li>
+                </ul>
+            </div>
+             <div v-for="(funcio, index) in funcionariosDele" :key="index" class="listafunc blue">
+                <nuxt-link class="nuxt" :to="{ name: 'fun', params: { id: funcio._id }}"> 
                     <ul>
-                        <li>NOME FUNCIONARIOS</li>
-                        <LI>CARGO</LI>
-                        <li class="disable">SALARIO</li>
-                        <li class="disable">CPF</li>
-                        <li class="disable">RG</li>
+                        <li v-text="funcio.nameFunc"></li>
+                        <li v-text="funcio.cargoFunc"></li>
+                        <li class="disable" v-text="funcio.salarioFunc"></li>
+                        <li class="disable" v-text="funcio.cpfFunc"></li>
+                        <li class="disable" v-text="funcio.rgFunc"></li>
                     </ul>
-                </div>
-                <div v-for="(funcio, index) in funcionariosDele" :key="index" class="listafunc blue">
-                    <nuxt-link class="nuxt" :to="{ name: 'fun', params: { id: funcio._id }}"> 
-                        <ul>
-                            <li>{{ funcio.nameFunc }}</li>
-                            <li>{{ funcio.cargoFunc }}</li>
-                            <li class="disable">{{ funcio.salarioFunc }}</li>
-                            <li class="disable">{{ funcio.cpfFunc }}</li>
-                            <li class="disable">{{ funcio.rgFunc }}</li>
-                        </ul>
-                    </nuxt-link>
-                </div>           
+                </nuxt-link>
+            </div>           
         </div>
     </div>
 </template>
-
 
 <script>
 import axios from "axios";
